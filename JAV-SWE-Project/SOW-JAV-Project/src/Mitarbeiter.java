@@ -4,12 +4,14 @@ public abstract class Mitarbeiter {
     private String Nachname;
     private String Vorname;
     private String Adresse;
+    private char geschlecht;
     private LocalDate Geburtsdatum;
     private LocalDate Eintrittsdatum;
     private LocalDate Austrittsdatum;
 
-    public Mitarbeiter(String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum) throws Exception{
+    public Mitarbeiter(String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, char geschlecht) throws Exception{
         try {
+            setGeschlecht(geschlecht);
             setNachname(nachname);
             setVorname(vorname);
             setAdresse(adresse);
@@ -89,7 +91,17 @@ public abstract class Mitarbeiter {
         }
         Austrittsdatum = austrittsdatum;
     }
-    public abstract void LohnErhoehen();
+
+    public char getGeschlecht() {
+        return geschlecht;
+    }
+
+    public void setGeschlecht(char geschlecht) throws Exception {
+        if(geschlecht != 'w' && geschlecht != 'm' && geschlecht != 'd'){
+            throw new Exception("Geschlecht is invalid");
+        }
+        this.geschlecht = geschlecht;
+    }
 
     public abstract double GehaltBerechnen();
 }

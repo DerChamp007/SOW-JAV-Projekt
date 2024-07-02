@@ -1,8 +1,12 @@
-public class Manager {
+import java.time.LocalDate;
+
+public class Manager extends Mitarbeiter{
     private double ManagerLohn;
     private double ProvisionSatz;
+    private double gewinn;
 
-    public Manager(double managerLohn, double provisionSatz) {
+    public Manager(char geschlecht,String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, double managerLohn, double provisionSatz) throws Exception {
+        super(nachname, vorname, adresse, geburtsdatum, eintrittsdatum, geschlecht);
         try{
             setManagerLohn(managerLohn);
             setProvisionSatz(provisionSatz);
@@ -34,13 +38,32 @@ public class Manager {
         ProvisionSatz = provisionSatz;
     }
     public double ProvisionBerechnen(){
-        return ManagerLohn * ProvisionSatz;
-    }
-    public void LohnErhoehen(double Prozentsatz){
-        if (Prozentsatz > 0){
-        ManagerLohn += ManagerLohn * (Prozentsatz / 100);
-        } else {
-            System.out.println("Prozentsatz should be greater than 0.");
+        if(gewinn <= 0){
+            return 0;
         }
+        double z = getGewinn();
+        setGewinn(0);
+        return z * ProvisionSatz;
+    }
+
+    public void LohnErhoehen(double Prozentsatz) throws Exception {
+        if (Prozentsatz > 0 && Prozentsatz <= 10){
+            ManagerLohn += ManagerLohn * (Prozentsatz / 100);
+        } else {
+            throw new Exception("Prozentsatz should be greater than 0. and not more than 10.");
+        }
+    }
+
+    public double getGewinn() {
+        return gewinn;
+    }
+
+    public void setGewinn(double gewinn) {
+        this.gewinn = gewinn;
+    }
+
+    @Override
+    public double GehaltBerechnen() {
+        return ManagerLohn + ProvisionBerechnen();
     }
 }
