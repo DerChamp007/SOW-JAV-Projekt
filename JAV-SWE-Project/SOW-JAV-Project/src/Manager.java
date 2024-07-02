@@ -1,5 +1,8 @@
 import java.time.LocalDate;
-
+/*
+@author: Randip Singh, Luis Ott
+@version: 1.0
+ */
 public class Manager extends Mitarbeiter{
     private double ManagerLohn;
     private double ProvisionSatz;

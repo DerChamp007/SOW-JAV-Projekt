@@ -1,5 +1,11 @@
 import java.time.LocalDate;
 
+import static java.lang.String.valueOf;
+
+/*
+@author: Randip Singh, Luis Ott
+@version: 1.0
+ */
 public abstract class Mitarbeiter {
     private String Nachname;
     private String Vorname;
@@ -21,6 +27,7 @@ public abstract class Mitarbeiter {
         catch(Exception e) {
             System.out.println(e.getMessage());
         }
+        kennung();
     }
 
     public String getNachname() {
@@ -101,6 +108,11 @@ public abstract class Mitarbeiter {
             throw new Exception("Geschlecht is invalid");
         }
         this.geschlecht = geschlecht;
+    }
+
+    public String kennung(){
+        String kennung = getNachname().substring(0,1).concat(getVorname().substring(0,1)).concat(valueOf(getClass()).substring(0,1)).concat(valueOf(getGeschlecht())).concat(valueOf(getGeburtsdatum().getYear()));
+        return kennung;
     }
 
     public abstract double GehaltBerechnen();

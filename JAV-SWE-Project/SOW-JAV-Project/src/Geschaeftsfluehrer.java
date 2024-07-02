@@ -1,5 +1,8 @@
 import java.time.LocalDate;
-
+/*
+@author: Randip Singh, Luis Ott
+@version: 1.0
+ */
 public class Geschaeftsfluehrer extends Manager{
     private double geschaeftsfluehrerZulage;
     public Geschaeftsfluehrer(char geschlecht, String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, double managerLohn, double provisionSatz, double geschaeftsfluehrerZulage) throws Exception {
@@ -16,10 +19,6 @@ public class Geschaeftsfluehrer extends Manager{
             throw new Exception("GeschaeftsfluehrerZulage cannot be negative");
         }
         this.geschaeftsfluehrerZulage = geschaeftsfluehrerZulage;
-    }
-
-    public void Lohnerhoehen(double Prozentsatz) throws Exception {
-        super.LohnErhoehen(Prozentsatz);
     }
 
     @Override
