@@ -19,6 +19,10 @@ public class Manager extends Mitarbeiter{
         }
     }
 
+    public Manager(String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, char geschlecht) throws Exception {
+        super(nachname, vorname, adresse, geburtsdatum, eintrittsdatum, geschlecht);
+    }
+
     public double getManagerLohn() {
         return ManagerLohn;
     }

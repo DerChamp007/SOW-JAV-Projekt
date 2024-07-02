@@ -114,6 +114,5 @@ public abstract class Mitarbeiter {
         String kennung = getNachname().substring(0,1).concat(getVorname().substring(0,1)).concat(valueOf(getClass()).substring(0,1)).concat(valueOf(getGeschlecht())).concat(valueOf(getGeburtsdatum().getYear()));
         return kennung;
     }
-
     public abstract double GehaltBerechnen();
 }
