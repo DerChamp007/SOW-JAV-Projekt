@@ -3,8 +3,13 @@ public class Manager {
     private double ProvisionSatz;
 
     public Manager(double managerLohn, double provisionSatz) {
-        ManagerLohn = managerLohn;
-        ProvisionSatz = provisionSatz;
+        try{
+            setManagerLohn(managerLohn);
+            setProvisionSatz(provisionSatz);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public double getManagerLohn() {

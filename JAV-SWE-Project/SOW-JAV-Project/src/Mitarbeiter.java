@@ -9,12 +9,16 @@ public abstract class Mitarbeiter {
     private LocalDate Austrittsdatum;
 
     public Mitarbeiter(String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum) throws Exception{
-        this.Nachname = nachname;
-        this.Vorname = vorname;
-        this.Adresse = adresse;
-        this.Geburtsdatum = geburtsdatum;
-        this.Eintrittsdatum = eintrittsdatum;
-        this.Austrittsdatum = null;
+        try {
+            setNachname(nachname);
+            setVorname(vorname);
+            setAdresse(adresse);
+            setGeburtsdatum(geburtsdatum);
+            setEintrittsdatum(eintrittsdatum);
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public String getNachname() {
@@ -22,7 +26,7 @@ public abstract class Mitarbeiter {
     }
 
     public void setNachname(String nachname) throws Exception {
-        if (nachname.isEmpty()){
+        if (nachname.isBlank()){
             throw new Exception("Nachname is empty");
         }
         Nachname = nachname;
@@ -34,7 +38,7 @@ public abstract class Mitarbeiter {
     }
 
     public void setVorname(String vorname) throws Exception {
-        if (vorname.isEmpty()){
+        if (vorname.isBlank()){
             throw new Exception("Vorname is empty");
         }
         Vorname = vorname;
@@ -45,7 +49,7 @@ public abstract class Mitarbeiter {
     }
 
     public void setAdresse(String adresse) throws Exception {
-        if (adresse.isEmpty()){
+        if (adresse.isBlank()){
             throw new Exception("Adresse is empty");
         }
         Adresse = adresse;
@@ -58,8 +62,8 @@ public abstract class Mitarbeiter {
     public void setGeburtsdatum(LocalDate geburtsdatum) throws Exception {
         if (geburtsdatum == null){
             throw new Exception("Geburtsdatum is empty");
-             }else if (geburtsdatum.isBefore(LocalDate.now())){
-                throw new Exception("Geburtsdatum is before now");
+             }else if (geburtsdatum.getYear()>LocalDate.now().getYear()-13){
+                throw new Exception("This is too young");
         }
         Geburtsdatum = geburtsdatum;
     }
@@ -71,8 +75,6 @@ public abstract class Mitarbeiter {
     public void setEintrittsdatum(LocalDate eintrittsdatum) throws Exception {
         if (eintrittsdatum == null){
             throw new Exception("Eintrittsdatum is empty");
-        } else if (eintrittsdatum.isAfter(LocalDate.now())){
-            throw new Exception("Eintrittsdatum is after now");
         }
         Eintrittsdatum = eintrittsdatum;
     }
@@ -84,8 +86,6 @@ public abstract class Mitarbeiter {
     public void setAustrittsdatum(LocalDate austrittsdatum) throws Exception {
         if (austrittsdatum == null){
             throw new Exception("Austrittsdatum is empty");
-        } else if (austrittsdatum.isAfter(LocalDate.now())){
-            throw new Exception("Austrittsdatum cannot be after now");
         }
         Austrittsdatum = austrittsdatum;
     }
