@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import static java.lang.String.valueOf;
 
@@ -14,6 +15,8 @@ public abstract class Mitarbeiter {
     private LocalDate Geburtsdatum;
     private LocalDate Eintrittsdatum;
     private LocalDate Austrittsdatum;
+    private Praemien[] praemien = new Praemien[10];
+    private static int zaehler = 0;
 
     public Mitarbeiter(String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, char geschlecht) throws Exception{
         try {
@@ -114,6 +117,34 @@ public abstract class Mitarbeiter {
         String kennung = getNachname().substring(0,1).concat(getVorname().substring(0,1)).concat(valueOf(getClass()).substring(0,1)).concat(valueOf(getGeschlecht())).concat(valueOf(getGeburtsdatum().getYear()));
         return kennung;
     }
+
+    public void praemie(double p){
+        praemien[zaehler] = new Praemien(p);
+        zaehler++;
+    }
+
+    public double getPraemie(){
+        double wert = 0;
+        for (int i = 0; i < zaehler; i++) {
+            wert += praemien[i].getWert();
+        }
+        return wert;
+    }
+    public abstract void LohnErhoehen();
     public abstract double GehaltBerechnen();
     public abstract String getKennung();
+
+    @Override
+    public String toString() {
+        return "Mitarbeiter: " +
+                "Nachname='" + Nachname + '\'' +
+                ", Vorname='" + Vorname + '\'' +
+                ", Adresse='" + Adresse + '\'' +
+                ", geschlecht=" + geschlecht +
+                ", Geburtsdatum=" + Geburtsdatum +
+                ", Eintrittsdatum=" + Eintrittsdatum +
+                ", Austrittsdatum=" + Austrittsdatum +
+                ", praemien=" + getPraemie() +
+                '€';
+    }
 }

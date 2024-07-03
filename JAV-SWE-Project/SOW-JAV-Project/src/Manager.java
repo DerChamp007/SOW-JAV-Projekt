@@ -55,7 +55,7 @@ public class Manager extends Mitarbeiter{
         return z * ProvisionSatz;
     }
 
-    public void LohnErhoehen(double Prozentsatz) throws Exception {
+    public void Lohnerhoehen(double Prozentsatz) throws Exception {
         if (Prozentsatz > 0 && Prozentsatz <= 10){
             ManagerLohn += ManagerLohn * (Prozentsatz / 100);
         } else {
@@ -72,7 +72,20 @@ public class Manager extends Mitarbeiter{
     }
 
     @Override
+    public void LohnErhoehen() {
+    }
+
+    @Override
     public double GehaltBerechnen() {
         return ManagerLohn + ProvisionBerechnen();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "ManagerLohn=" + ManagerLohn +
+                "€, ProvisionSatz=" + ProvisionSatz +
+                "%, gewinn=" + gewinn +
+                "€, kennung='" + kennung + '\'' ;
     }
 }

@@ -72,7 +72,7 @@ public class Angestellter extends Mitarbeiter{
         }
         this.ueberstundenanzahl = ueberstundenanzahl;
     }
-
+    @Override
     public void LohnErhoehen() {
         stundenlohn *= 1.05 ;
         ueberstundenlohn *= 1.05 ;
@@ -81,5 +81,15 @@ public class Angestellter extends Mitarbeiter{
     @Override
     public double GehaltBerechnen() {
         return stundenlohn*stundenlohn+ueberstundenlohn*ueberstundenlohn*ueberstundenanzahl;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "stundenlohn=" + stundenlohn +
+                "€, ueberstundenlohn=" + ueberstundenlohn +
+                ", stundenanzahl=" + stundenanzahl +
+                "€, ueberstundenanzahl=" + ueberstundenanzahl +
+                ", kennung='" + kennung + '\'';
     }
 }
