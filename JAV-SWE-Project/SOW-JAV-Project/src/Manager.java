@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+import java.util.Scanner;
+
 /*
 @author: Randip Singh, Luis Ott
 @version: 1.0
@@ -66,13 +68,22 @@ public class Manager extends Mitarbeiter{
     public double getGewinn() {
         return gewinn;
     }
-
+    @Override
     public void setGewinn(double gewinn) {
         this.gewinn = gewinn;
     }
 
     @Override
     public void LohnErhoehen() {
+        System.out.println("Lohnerhoehung in Prozent: ");
+        Scanner scanner = new Scanner(System.in);
+        double eingabe = scanner.nextDouble();
+        try {
+            Lohnerhoehen(eingabe);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override

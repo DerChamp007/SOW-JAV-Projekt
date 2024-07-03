@@ -147,4 +147,7 @@ public abstract class Mitarbeiter {
                 ", praemien=" + getPraemie() +
                 '€';
     }
+    public void setGewinn(double gewinn){
+        return;
+    }
 }
