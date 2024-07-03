@@ -31,4 +31,12 @@ public class Geschaeftsfuehrer extends Manager{
     public double GehaltBerechnen() {
         return super.GehaltBerechnen()+geschaeftsfluehrerZulage;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "geschaeftsfluehrerZulage=" + geschaeftsfluehrerZulage+ '\'' +
+                ", kennung='" + kennung +
+                "€";
+    }
 }

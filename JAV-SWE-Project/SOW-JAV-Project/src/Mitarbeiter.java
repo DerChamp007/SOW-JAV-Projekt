@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import static java.lang.String.valueOf;
 
@@ -122,6 +123,28 @@ public abstract class Mitarbeiter {
         zaehler++;
     }
 
+    public double getPraemie(){
+        double wert = 0;
+        for (int i = 0; i < zaehler; i++) {
+            wert += praemien[i].getWert();
+        }
+        return wert;
+    }
+
     public abstract double GehaltBerechnen();
     public abstract String getKennung();
+
+    @Override
+    public String toString() {
+        return "Mitarbeiter: " +
+                "Nachname='" + Nachname + '\'' +
+                ", Vorname='" + Vorname + '\'' +
+                ", Adresse='" + Adresse + '\'' +
+                ", geschlecht=" + geschlecht +
+                ", Geburtsdatum=" + Geburtsdatum +
+                ", Eintrittsdatum=" + Eintrittsdatum +
+                ", Austrittsdatum=" + Austrittsdatum +
+                ", praemien=" + getPraemie() +
+                '€';
+    }
 }

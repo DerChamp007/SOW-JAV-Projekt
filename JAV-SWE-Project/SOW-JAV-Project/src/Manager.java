@@ -75,4 +75,13 @@ public class Manager extends Mitarbeiter{
     public double GehaltBerechnen() {
         return ManagerLohn + ProvisionBerechnen();
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "ManagerLohn=" + ManagerLohn +
+                "€, ProvisionSatz=" + ProvisionSatz +
+                "%, gewinn=" + gewinn +
+                "€, kennung='" + kennung + '\'' ;
+    }
 }

@@ -82,4 +82,14 @@ public class Angestellter extends Mitarbeiter{
     public double GehaltBerechnen() {
         return stundenlohn*stundenlohn+ueberstundenlohn*ueberstundenlohn*ueberstundenanzahl;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "stundenlohn=" + stundenlohn +
+                "€, ueberstundenlohn=" + ueberstundenlohn +
+                ", stundenanzahl=" + stundenanzahl +
+                "€, ueberstundenanzahl=" + ueberstundenanzahl +
+                ", kennung='" + kennung + '\'';
+    }
 }

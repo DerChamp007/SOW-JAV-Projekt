@@ -5,12 +5,11 @@ import java.time.LocalDate;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
-
 public class XFirm {
-    /*
+/*
 @author: Randip Singh, Luis Ott
 @version: 1.0
- */
+*/
     private Mitarbeiter[] angestelltenListe = new Mitarbeiter[20];
     private Mitarbeiter[] ehemaligenListe;
     private static int anzahlMitarbeiter = 0;
@@ -141,6 +140,7 @@ public class XFirm {
             }
         }
     }
+
     public double MinLohn(){
         double temp = MaxLohn();
         for (int i = 0; i < angestelltenListe.length; i++) {
@@ -155,6 +155,7 @@ public class XFirm {
         }
         return temp;
     }
+
     public double MaxLohn(){
         double temp = 0.0;
         for (int i = 0; i < angestelltenListe.length; i++) {
@@ -173,6 +174,7 @@ public class XFirm {
     public double VerdienstSpanne(){
         return MaxLohn() - MinLohn();
     }
+
     public double DurchschittsAlter(){
         double temp = 0.0;
         for (int i = 0; i < angestelltenListe.length; i++) {
@@ -185,6 +187,7 @@ public class XFirm {
         }
         return temp / getAnzahlMitarbeiter();
     }
+
     public int LaengsterMitarbeiter(){
         int temp = LocalDate.now().getYear();
         for (int i = 0; i < angestelltenListe.length; i++) {
@@ -197,6 +200,7 @@ public class XFirm {
         }
         return LocalDate.now().getYear() - temp;
     }
+
     public double GeschlechterAnteilW(){
         int w = 0;
         for (int i = 0; i < angestelltenListe.length; i++) {
@@ -208,21 +212,23 @@ public class XFirm {
         }
         return (w / getAnzahlMitarbeiter()) * 100;
     }
-public double GeschlechterAnteilM(){
-    int m = 0;
-    for (int i = 0; i < angestelltenListe.length; i++) {
-        if (angestelltenListe[i] != null) {
-            if (angestelltenListe[i].getGeschlecht() == 'm') {
-                m++;
-            } else if (angestelltenListe[i] == null) {
-                System.out.println("The List is empty at index " + i);
-                break;
+
+    public double GeschlechterAnteilM(){
+        int m = 0;
+        for (int i = 0; i < angestelltenListe.length; i++) {
+            if (angestelltenListe[i] != null) {
+                if (angestelltenListe[i].getGeschlecht() == 'm') {
+                    m++;
+                } else if (angestelltenListe[i] == null) {
+                    System.out.println("The List is empty at index " + i);
+                    break;
+                }
             }
         }
+        return ((double) m / getAnzahlMitarbeiter()) * 100;
     }
-    return ((double) m / getAnzahlMitarbeiter()) * 100;
-}
-public void gehaltsabrechnung(int monat){
+
+    public void gehaltsabrechnung(int monat){
     BufferedWriter writer = null;
     try {
         // BufferedWriter erstellen und mit einem FileWriter kombinieren
