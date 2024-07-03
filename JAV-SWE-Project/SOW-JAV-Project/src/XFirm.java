@@ -24,7 +24,7 @@ public class XFirm {
     }
     public XFirm(int maxMitarbeiter){
         // Pfad zur Textdatei
-        String dateiPfad = "C:/Users/user/OneDrive - bib & FHDW/Dokumente/SWE/SOW-JAV-Projekt/Text.txt";
+        String dateiPfad = "../../Text.txt";
 
         // Methode aufrufen, um die Wörter aus der Datei zu lesen
         woerterAusDateiLesen(dateiPfad);

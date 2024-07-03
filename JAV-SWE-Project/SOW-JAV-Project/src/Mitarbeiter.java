@@ -14,6 +14,8 @@ public abstract class Mitarbeiter {
     private LocalDate Geburtsdatum;
     private LocalDate Eintrittsdatum;
     private LocalDate Austrittsdatum;
+    private Praemien[] praemien = new Praemien[10];
+    private static int zaehler = 0;
 
     public Mitarbeiter(String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, char geschlecht) throws Exception{
         try {
@@ -114,6 +116,12 @@ public abstract class Mitarbeiter {
         String kennung = getNachname().substring(0,1).concat(getVorname().substring(0,1)).concat(valueOf(getClass()).substring(0,1)).concat(valueOf(getGeschlecht())).concat(valueOf(getGeburtsdatum().getYear()));
         return kennung;
     }
+
+    public void praemie(double p){
+        praemien[zaehler] = new Praemien(p);
+        zaehler++;
+    }
+
     public abstract double GehaltBerechnen();
     public abstract String getKennung();
 }
