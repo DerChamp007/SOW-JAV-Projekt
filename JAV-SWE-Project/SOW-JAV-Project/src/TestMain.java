@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class TestMain {
@@ -20,7 +21,9 @@ public class TestMain {
             switch (eingabe){
                 case 1 ->{
                     for (int i = 0; i < firma.getAngestelltenListe().length; i++) {
-                        System.out.println(i + ". " + firma.getAngestelltenListe()[i].toString());
+                        if(firma.getAngestelltenListe()[i] != null){
+                            System.out.println(i + ". " + firma.getAngestelltenListe()[i].toString());
+                        }
                     }
                 }
                 case 2 ->{
@@ -31,17 +34,17 @@ public class TestMain {
                 }
                 case 4 ->{
                     System.out.println("Männlicher Anteil: " + firma.GeschlechterAnteilM() + " %");
-                    System.out.println("Weiblicher Anteil: " + firma.GeschlechterAnteilM() + " %");
+                    System.out.println("Weiblicher Anteil: " + firma.GeschlechterAnteilW() + " %");
                     System.out.println("Diverser Anteil: " + (100 - (firma.GeschlechterAnteilM() + firma.GeschlechterAnteilW())) + " %");
                 }
                 case 5 ->{
-                    System.out.println("Das Durchschnittsalter beträgt: " + firma.DurchschittsAlter());
+                    System.out.println("Das Durchschnittsalter beträgt: " + (LocalDate.now().getYear() - firma.DurchschittsAlter()));
                 }
                 case 6 ->{
                     System.out.println("Der längste Mitarbeiter der Firma ist: " + firma.LaengsterMitarbeiter().toString());
                 }
                 case 7 ->{
-                    firma.woerterAusDateiLesen("../../Text.txt");
+                    firma.woerterAusDateiLesen("Text.txt");
                 }
                 case 8 ->{
                     shouldClose = true;

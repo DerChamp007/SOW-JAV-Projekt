@@ -32,7 +32,7 @@ public class Manager extends Mitarbeiter{
     }
 
     public void setManagerLohn(double managerLohn) throws Exception{
-        if (ManagerLohn <= 0) {
+        if (managerLohn <= 0.0) {
             throw new Exception("Manager Lohn should be greater than 0.");
         }
         ManagerLohn = managerLohn;
@@ -43,7 +43,7 @@ public class Manager extends Mitarbeiter{
     }
 
     public void setProvisionSatz(double provisionSatz) throws Exception{
-        if (ProvisionSatz <= 0) {
+        if (provisionSatz <= 0) {
             throw new Exception("Provision Satz should be greater than 0.");
         }
         ProvisionSatz = provisionSatz;

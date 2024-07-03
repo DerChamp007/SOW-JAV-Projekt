@@ -23,19 +23,21 @@ public class XFirm {
     }
     public XFirm(int maxMitarbeiter){
         // Pfad zur Textdatei
-        String dateiPfad = "../../Text.txt";
+        String dateiPfad = "Text.txt";
 
         // Methode aufrufen, um die Wörter aus der Datei zu lesen
         woerterAusDateiLesen(dateiPfad);
 
     }
 
-    public static void woerterAusDateiLesen(String dateiPfad) {
-        try (BufferedReader br = new BufferedReader(new FileReader(dateiPfad))) {
+    public void woerterAusDateiLesen(String dateiPfad) {
+        try  {
             String zeile;
+            BufferedReader br = new BufferedReader(new FileReader(dateiPfad));
 
             // Lesen der Datei zeilenweise
             while ((zeile = br.readLine()) != null) {
+                System.out.println("Zeile gelesen: " + zeile);
                 // Zerlegen der Zeile in Wörter (Annahme: Wörter sind durch Leerzeichen getrennt)
                 String[] woerter = zeile.split("\\s+");
 
@@ -54,23 +56,26 @@ public class XFirm {
                 double y = Double.parseDouble(woerter[8]);
                 double z = 0;
                 double w = 0;
-                if(woerter[9]!=null){
+                if(woerter.length>9){
                     z = Double.parseDouble(woerter[9]);
                 }
-                if(woerter[10]!=null){
+                if(woerter.length>10){
                     w = Double.parseDouble(woerter[10]);
                 }
                 try{
                     if(woerter[0].equals("Angestellter")){
-                        new Angestellter(woerter[1], woerter[2], woerter[3], l, m, ch, x, y, z, w);
+                        mitarbeiterHinzufuegen(new Angestellter(woerter[1], woerter[2], woerter[3], l, m, ch, x, y, z, w));
+                        anzahlMitarbeiter++;
                     }
                     if(woerter[0].equals("Manager")){
-                        new Manager(woerter[1], woerter[2], woerter[3], l, m, ch, x, y);
+                        mitarbeiterHinzufuegen(new Manager(woerter[1], woerter[2], woerter[3], l, m, ch, x, y));
+                        anzahlMitarbeiter++;
                     }
                     if(woerter[0].equals("Geschaeftsfuehrer")){
-                        new Geschaeftsfuehrer(woerter[1], woerter[2], woerter[3], l, m, ch, x, y, z);
+                        mitarbeiterHinzufuegen(new Geschaeftsfuehrer(woerter[1], woerter[2], woerter[3], l, m, ch, x, y, z));
+                        anzahlMitarbeiter++;
                     }
-                    anzahlMitarbeiter++;
+
                 }
                 catch (Exception e){
                     System.out.println(e.getMessage());
@@ -108,7 +113,7 @@ public class XFirm {
         return anzahlMitarbeiter;
     }
 
-    public static void setAnzahlMitarbeiter(int anzahlMitarbeiter) throws Exception {
+    public void setAnzahlMitarbeiter(int anzahlMitarbeiter) throws Exception {
         if(anzahlMitarbeiter <= 0){
             throw new Exception("anzahlMitarbeiter must be greater than 0");
         }
@@ -122,6 +127,7 @@ public class XFirm {
         for (int i = 0; i < getAngestelltenListe().length; i++) {
             if (getAngestelltenListe()[i] == null) {
                 getAngestelltenListe()[i] = mitarbeiter;
+                return;
             }
         }
     }
@@ -212,7 +218,7 @@ public class XFirm {
                 }
             }
         }
-        return (w / getAnzahlMitarbeiter()) * 100;
+        return ((double) w / getAnzahlMitarbeiter()) * 100;
     }
 
     public double GeschlechterAnteilM(){

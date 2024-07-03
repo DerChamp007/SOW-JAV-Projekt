@@ -80,7 +80,7 @@ public class Angestellter extends Mitarbeiter{
 
     @Override
     public double GehaltBerechnen() {
-        return stundenlohn*stundenlohn+ueberstundenlohn*ueberstundenlohn*ueberstundenanzahl;
+        return (stundenlohn*stundenanzahl)+(ueberstundenlohn*ueberstundenanzahl);
     }
 
     @Override
