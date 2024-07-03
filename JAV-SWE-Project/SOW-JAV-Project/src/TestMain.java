@@ -64,6 +64,9 @@ public class TestMain {
             while (!shouldClose2) {
                 int i;
                 for (i = 0; i < temp.length; i++) {
+                    if (temp[i] == null) {
+                        break;
+                    }
                     System.out.println(temp[i].toString() + " = " + (i+1));
                 }
                 System.out.println("Zurück zum Hauptmenü = 0");
@@ -74,27 +77,27 @@ public class TestMain {
                 else {
                     System.out.println("LohnErhöhen = 1");
                     System.out.println("Prämie hinzufügen = 2");
-                    if (temp[i].getClass() == Manager.class || temp[i].getClass() == Geschaeftsfuehrer.class){
+                    if (temp[eingabe-1].getKennung().startsWith("M") || temp[eingabe-1].getKennung().startsWith("G")){
                     System.out.println("Gewinn eintragen = 3");
                     }
-                    eingabe = Integer.parseInt(scan.nextLine());
-                    switch (eingabe) {
+                    int eingabe2 = Integer.parseInt(scan.nextLine());
+                    switch (eingabe2) {
                         case 0 -> {
                             String[] args = {};
                             main(args);
                         }
                         case 1 -> {
-                            temp[i].LohnErhoehen();
+                            temp[eingabe-1].LohnErhoehen();
                         }
                         case 2 -> {
                             System.out.println("Prämie in €: ");
                             double praemie = Double.parseDouble(scan.nextLine());
-                            temp[i].praemie(praemie);
+                            temp[eingabe-1].praemie(praemie);
                         }
                         case 3 -> {
                             System.out.println("Gewinn in €: ");
                             double gewinn = Double.parseDouble(scan.nextLine());
-                            temp[i].setGewinn(gewinn);
+                            temp[eingabe].setGewinn(gewinn);
                         }
                     }
                 }

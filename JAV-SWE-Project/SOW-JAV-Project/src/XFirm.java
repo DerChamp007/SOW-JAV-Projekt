@@ -37,7 +37,7 @@ public class XFirm {
 
             // Lesen der Datei zeilenweise
             while ((zeile = br.readLine()) != null) {
-                System.out.println("Zeile gelesen: " + zeile);
+                //System.out.println("Zeile gelesen: " + zeile);
                 // Zerlegen der Zeile in Wörter (Annahme: Wörter sind durch Leerzeichen getrennt)
                 String[] woerter = zeile.split("\\s+");
 
@@ -91,11 +91,9 @@ public class XFirm {
     }
 
     public void setAngestelltenListe(Mitarbeiter[] angestelltenListe) throws Exception {
-        for (int i = 0; i < angestelltenListe.length; i++) {
-            if (angestelltenListe[i] != null) {
+
                 this.angestelltenListe = angestelltenListe;
-            }
-        }
+
         if(getAngestelltenListe()==null){
             throw new Exception("angestelltenListe cannot be empty");
         }
@@ -144,6 +142,7 @@ public class XFirm {
                     }
                 }
                 getAngestelltenListe()[i] = null;
+                anzahlMitarbeiter--;
             }
         }
     }

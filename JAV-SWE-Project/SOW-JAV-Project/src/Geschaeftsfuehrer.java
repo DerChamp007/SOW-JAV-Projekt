@@ -36,7 +36,6 @@ public class Geschaeftsfuehrer extends Manager{
     public String toString() {
         return super.toString() +
                 "geschaeftsfluehrerZulage=" + geschaeftsfluehrerZulage+ '\'' +
-                ", kennung='" + kennung +
-                "€";
+                ", kennung='" + kennung;
     }
 }
