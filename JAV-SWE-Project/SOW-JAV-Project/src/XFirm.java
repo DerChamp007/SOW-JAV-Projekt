@@ -70,6 +70,7 @@ public class XFirm {
                     if(woerter[0].equals("Geschaeftsfuehrer")){
                         new Geschaeftsfuehrer(woerter[1], woerter[2], woerter[3], l, m, ch, x, y, z);
                     }
+                    anzahlMitarbeiter++;
                 }
                 catch (Exception e){
                     System.out.println(e.getMessage());

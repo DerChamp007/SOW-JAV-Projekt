@@ -72,7 +72,7 @@ public class Angestellter extends Mitarbeiter{
         }
         this.ueberstundenanzahl = ueberstundenanzahl;
     }
-
+    @Override
     public void LohnErhoehen() {
         stundenlohn += stundenlohn * (5 / 100);
         ueberstundenlohn += ueberstundenlohn * (5 / 100);

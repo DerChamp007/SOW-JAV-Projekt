@@ -130,7 +130,7 @@ public abstract class Mitarbeiter {
         }
         return wert;
     }
-
+    public abstract void LohnErhoehen();
     public abstract double GehaltBerechnen();
     public abstract String getKennung();
 
