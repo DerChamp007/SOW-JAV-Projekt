@@ -40,10 +40,16 @@ public class TestMain {
                     System.out.println("Gewinn eintragen = 3");
                     }
                     switch (eingabe) {
-                        case 0: String[] args = {};
-                        main(args);
-                        break;
-                        case 1 -> (temp[i].)
+                        case 0 -> {
+                            String[] args = {};
+                            main(args);
+                        }
+                        case 1 -> {
+                            temp[i].LohnErhoehen();
+                        }
+                        case 2 -> {
+                            temp[i]
+                        }
                     }
                 }
             }
