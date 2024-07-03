@@ -189,17 +189,18 @@ public class XFirm {
         return temp / getAnzahlMitarbeiter();
     }
 
-    public int LaengsterMitarbeiter(){
+    public Mitarbeiter LaengsterMitarbeiter(){
         int temp = LocalDate.now().getYear();
+        Mitarbeiter mitarbeiter = null;
         for (int i = 0; i < angestelltenListe.length; i++) {
             if (angestelltenListe[i] != null) {
                 if (angestelltenListe[i].getEintrittsdatum().getYear() < temp) {
+                    mitarbeiter = angestelltenListe[i];
                     temp = angestelltenListe[i].getEintrittsdatum().getYear();
-                    System.out.println("The longest employee of the Company is: " + angestelltenListe[i].getVorname()+ " "+ angestelltenListe[i].getNachname());
                 }
             }
         }
-        return LocalDate.now().getYear() - temp;
+        return mitarbeiter;
     }
 
     public double GeschlechterAnteilW(){
