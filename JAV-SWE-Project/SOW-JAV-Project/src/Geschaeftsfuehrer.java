@@ -3,15 +3,17 @@ import java.time.LocalDate;
 @author: Randip Singh, Luis Ott
 @version: 1.0
  */
-public class Geschaeftsfluehrer extends Manager{
+public class Geschaeftsfuehrer extends Manager{
+    private String kennung;
     private double geschaeftsfluehrerZulage;
-    public Geschaeftsfluehrer(char geschlecht, String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, double managerLohn, double provisionSatz, double geschaeftsfluehrerZulage) throws Exception {
-        super(geschlecht, nachname, vorname, adresse, geburtsdatum, eintrittsdatum,   managerLohn, provisionSatz);
-
+    public Geschaeftsfuehrer(String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, char geschlecht, double managerLohn, double provisionSatz, double geschaeftsfluehrerZulage) throws Exception {
+        super( nachname, vorname, adresse, geburtsdatum, eintrittsdatum,geschlecht,   managerLohn, provisionSatz);
+        kennung = super.kennung();
     }
 
-    public Geschaeftsfluehrer(String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, char geschlecht) throws Exception {
-        super(nachname, vorname, adresse, geburtsdatum, eintrittsdatum, geschlecht);
+    @Override
+    public String getKennung() {
+        return kennung;
     }
 
     public double getGeschaeftsfluehrerZulage() {

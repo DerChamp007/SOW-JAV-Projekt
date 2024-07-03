@@ -8,8 +8,9 @@ public class Angestellter extends Mitarbeiter{
     private double ueberstundenlohn;
     private double stundenanzahl;
     private double ueberstundenanzahl;
+    private String kennung;
 
-    public Angestellter(char geschlecht, String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, double stundenlohn, double ueberstundenlohn, double studnenanzahl, double ueberstundenanzahl) throws Exception {
+    public Angestellter( String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum,char geschlecht, double stundenlohn, double ueberstundenlohn, double studnenanzahl, double ueberstundenanzahl) throws Exception {
         super(nachname, vorname, adresse, geburtsdatum, eintrittsdatum, geschlecht);
         try{
             setStundenlohn(stundenlohn);
@@ -20,11 +21,13 @@ public class Angestellter extends Mitarbeiter{
         catch(Exception e){
             System.out.println(e.getMessage());
         }
+        kennung = super.kennung();
+    }
+    @Override
+    public String getKennung() {
+        return kennung;
     }
 
-    public Angestellter(String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, char geschlecht) throws Exception {
-        super(nachname, vorname, adresse, geburtsdatum, eintrittsdatum, geschlecht);
-    }
 
     public double getStundenlohn() {
         return stundenlohn;
@@ -77,6 +80,6 @@ public class Angestellter extends Mitarbeiter{
 
     @Override
     public double GehaltBerechnen() {
-        return 0;
+        return stundenlohn*stundenlohn+ueberstundenlohn*ueberstundenlohn*ueberstundenanzahl;
     }
 }

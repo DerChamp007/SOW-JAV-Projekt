@@ -7,8 +7,9 @@ public class Manager extends Mitarbeiter{
     private double ManagerLohn;
     private double ProvisionSatz;
     private double gewinn;
+    private String kennung;
 
-    public Manager(char geschlecht,String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, double managerLohn, double provisionSatz) throws Exception {
+    public Manager(String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum,char geschlecht, double managerLohn, double provisionSatz) throws Exception {
         super(nachname, vorname, adresse, geburtsdatum, eintrittsdatum, geschlecht);
         try{
             setManagerLohn(managerLohn);
@@ -17,10 +18,11 @@ public class Manager extends Mitarbeiter{
         catch(Exception e){
             System.out.println(e.getMessage());
         }
+        kennung = super.kennung();
     }
-
-    public Manager(String nachname, String vorname, String adresse, LocalDate geburtsdatum, LocalDate eintrittsdatum, char geschlecht) throws Exception {
-        super(nachname, vorname, adresse, geburtsdatum, eintrittsdatum, geschlecht);
+    @Override
+    public String getKennung() {
+        return kennung;
     }
 
     public double getManagerLohn() {

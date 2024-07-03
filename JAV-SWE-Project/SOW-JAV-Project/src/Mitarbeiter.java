@@ -115,4 +115,5 @@ public abstract class Mitarbeiter {
         return kennung;
     }
     public abstract double GehaltBerechnen();
+    public abstract String getKennung();
 }

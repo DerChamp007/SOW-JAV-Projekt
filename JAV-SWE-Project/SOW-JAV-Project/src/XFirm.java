@@ -2,6 +2,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 
 public class XFirm {
     /*
@@ -24,11 +27,11 @@ public class XFirm {
         String dateiPfad = "C:/Users/user/OneDrive - bib & FHDW/Dokumente/SWE/SOW-JAV-Projekt/Text.txt";
 
         // Methode aufrufen, um die Wörter aus der Datei zu lesen
-        wörterAusDateiLesen(dateiPfad);
+        woerterAusDateiLesen(dateiPfad);
 
     }
 
-    public static void wörterAusDateiLesen(String dateiPfad) {
+    public static void woerterAusDateiLesen(String dateiPfad) {
         try (BufferedReader br = new BufferedReader(new FileReader(dateiPfad))) {
             String zeile;
 
@@ -48,15 +51,25 @@ public class XFirm {
                 c = Integer.parseInt(woerter2[2]);
                 LocalDate m = LocalDate.of(a, b, c);
                 char ch = woerter[6].charAt(0);
+                double x = Double.parseDouble(woerter[7]);
+                double y = Double.parseDouble(woerter[8]);
+                double z = 0;
+                double w = 0;
+                if(woerter[9]!=null){
+                    z = Double.parseDouble(woerter[9]);
+                }
+                if(woerter[10]!=null){
+                    w = Double.parseDouble(woerter[10]);
+                }
                 try{
-                    if(woerter[0].charAt(0) == 'a'){
-                        new Angestellter(woerter[1], woerter[2], woerter[3], l, m, ch);
+                    if(woerter[0].equals("Angestellter")){
+                        new Angestellter(woerter[1], woerter[2], woerter[3], l, m, ch, x, y, z, w);
                     }
-                    if(woerter[0].charAt(0) == 'm'){
-                        new Manager(woerter[1], woerter[2], woerter[3], l, m, ch);
+                    if(woerter[0].equals("Manager")){
+                        new Manager(woerter[1], woerter[2], woerter[3], l, m, ch, x, y);
                     }
-                    if(woerter[0].charAt(0) == 'g'){
-                        new Geschaeftsfluehrer(woerter[1], woerter[2], woerter[3], l, m, ch);
+                    if(woerter[0].equals("Geschaeftsfuehrer")){
+                        new Geschaeftsfuehrer(woerter[1], woerter[2], woerter[3], l, m, ch, x, y, z);
                     }
                 }
                 catch (Exception e){
@@ -192,7 +205,7 @@ public class XFirm {
                     w++;
                 }
             }
-            }
+        }
         return (w / getAnzahlMitarbeiter()) * 100;
     }
 public double GeschlechterAnteilM(){
@@ -208,6 +221,34 @@ public double GeschlechterAnteilM(){
         }
     }
     return ((double) m / getAnzahlMitarbeiter()) * 100;
+}
+public void gehaltsabrechnung(int monat){
+    BufferedWriter writer = null;
+    try {
+        // BufferedWriter erstellen und mit einem FileWriter kombinieren
+        writer = new BufferedWriter(new FileWriter("Gehaltsabrechnung2024_" + monat + ".txt"));
+
+        // Schreiben von Text in die Datei
+        double gehalt = 0;
+        for (int i = 0; i < angestelltenListe.length; i++) {
+            if (angestelltenListe[i] != null) {
+                gehalt = angestelltenListe[i].GehaltBerechnen();
+                writer.write(angestelltenListe[i].getKennung() + angestelltenListe[i].getNachname() + "Verdient: " + gehalt + " €\n");
+            }
+        }
+
+        // Weitere Schreiboperationen hier
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        // Sicherstellen, dass der BufferedWriter geschlossen wird
+        try {
+            if (writer != null) writer.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
 
 }
